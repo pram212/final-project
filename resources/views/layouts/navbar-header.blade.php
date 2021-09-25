@@ -45,7 +45,9 @@
                         </li>
                     @endif
                 @else
-
+                <li class="header-notification">
+                    <a href="#" class="text-primary"><i class="ti-plus"></i></a>
+                </li>
                 <li class="header-notification">
                     <a href="#!">
                         <i class="ti-bell"></i>

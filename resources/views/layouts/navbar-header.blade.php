@@ -46,7 +46,7 @@
                     @endif
                 @else
                 <li class="header-notification">
-                    <a href="#" class="text-primary"><i class="ti-plus"></i></a>
+                    <a href="{{url('/post/create')}}" class="text-primary"><i class="ti-plus"></i></a>
                 </li>
                 <li class="header-notification">
                     <a href="#!">

@@ -11,5 +11,13 @@ class Post extends Model
 
     protected  $guarded = ['id'];
 
-    
+    /**
+     * The user that belong to the Post
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

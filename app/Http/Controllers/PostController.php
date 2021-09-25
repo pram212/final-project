@@ -4,9 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
-{
+{   
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -24,7 +30,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('post.create');
     }
 
     /**
@@ -34,8 +40,19 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {   
+        
+        $request->validate([
+            'tulisan' => 'required',
+        ]);
+
+        $post = new Post;
+        $post->tulisan = $request->tulisan;
+        $post->user_id = Auth::id();
+        $post->save();
+
+        return redirect('/home')->with('sukses', 'Berhasil diposting');
+
     }
 
     /**

@@ -26,7 +26,9 @@
                         <small class="text-info">{{date('d/m/y', strtotime($post->created_at))}}</small>
                     </div>
                     <div class="col-sm-3 text-right">
-                        <a href="{{url('/post/' .$post->id .'/edit')}}" class="text-secondary"><i class="ti-pencil-alt"></i></a> | <a href="#" class="text-danger"><i class="ti-trash"></i></a>
+                        @if (Auth::user()->id == $post->user->id)
+                            <a href="{{url('/post/' .$post->id .'/edit')}}" class="text-secondary"><i class="ti-pencil-alt"></i></a> | <a href="#" class="text-danger"><i class="ti-trash"></i></a>
+                        @endif
                     </div>
                 </div>
                 <div class="card-body border">

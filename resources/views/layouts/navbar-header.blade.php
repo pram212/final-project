@@ -9,7 +9,7 @@
                     <i class="ti-search"></i>
                 </a>
             @endauth
-            <a href="index.html">
+            <a href="{{url('/home')}}">
                 <img class="img-fluid" src="{{asset('template/images/logo.png')}}" alt="Theme-Logo" />
             </a>
             <a class="mobile-options">
@@ -103,7 +103,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="{{url('user/'. Auth::user()->id)}}">
                                 <i class="ti-user"></i> Profile
                             </a>
                         </li>

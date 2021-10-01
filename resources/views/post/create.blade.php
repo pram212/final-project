@@ -10,7 +10,7 @@
                     @csrf
                     <div class="form-group">
                       <label for="tulisan">Postingan Baru</label>
-                      <textarea class="form-control form-control-round @error('tulisan') is-invalid @enderror" name="tulisan" id="tulisan" rows="3" data-placeholder="Tulis sesuatu...">
+                      <textarea class="form-control rounded @error('tulisan') is-invalid @enderror" name="tulisan" id="tulisan" rows="3" autofocus>
                       </textarea>
                       @error('tulisan')
                           <small class="text-danger">{{$message}}</small>

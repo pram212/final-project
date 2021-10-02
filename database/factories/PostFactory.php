@@ -22,7 +22,8 @@ class PostFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'tulisan' => $this->faker->sentence($nbWords = 100, $variableNbWords = true),
+            'user_id' => $this->faker->numberBetween($min = 1, $max = 10),
         ];
     }
 }

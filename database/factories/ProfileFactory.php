@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Profile;
+// use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ProfileFactory extends Factory
@@ -20,9 +21,11 @@ class ProfileFactory extends Factory
      * @return array
      */
     public function definition()
-    {
-        return [
-            //
-        ];
+    {   
+        for ($i=1; $i <= 10; $i++) { 
+            return [
+              'user_id' => $i,  
+            ];
+        }
     }
 }

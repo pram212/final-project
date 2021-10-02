@@ -18,7 +18,6 @@ class CreatePostsTable extends Migration
             $table->text('tulisan')->nullable();
             $table->string('gambar')->nullable();
             $table->string('caption')->nullable();
-            $table->text('quote')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();

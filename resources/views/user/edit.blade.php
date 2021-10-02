@@ -32,52 +32,85 @@
                         </div>
                         <div class="col-sm">
                             <form action="{{url('user/'. $user->id)}}" method="POST">
+                                @csrf
+                                @method('put')
                                 <div class="form-group row">
                                     <div class="col">
                                         <label for="fullname">Fullname :</label>
-                                        <input type="text" name="fullname" id="fullname" class="form-control rounded" value="{{$user->fullname}}" autofocus>
+                                        <input type="text" name="fullname" id="fullname" class="form-control rounded @error('fullname') is-invalid @enderror" value="{{$user->profile->fullname}}" autofocus>
                                         {{-- <small id="helpId" class="text-muted">Help text</small> --}}
                                     </div>
                                     <div class="col">
                                         <label for="name">Username :</label>
-                                        <input type="text" name="name" id="name" class="form-control rounded" value="{{$user->name}}">
+                                        <input type="text" name="name" id="name" class="form-control rounded @error('name') is-invalid @enderror" value="{{$user->name}}">
                                         {{-- <small id="helpId" class="text-muted">Help text</small> --}}    
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col">
                                         <label for="email">Email :</label>
-                                        <input type="email" name="email" id="email" class="form-control rounded" value="{{$user->email}}">
+                                        <input type="email" name="email" id="email" class="form-control rounded @error('email') is-invalid @enderror" value="{{$user->email}}">
                                         {{-- <small id="helpId" class="text-muted">Help text</small> --}}
                                     </div>
                                     <div class="col">
                                           <label for="age">Age :</label>
-                                          <input type="text" class="form-control rounded" name="age" id="age" value="{{$user->age}}">
+                                          <input type="text" class="form-control rounded @error('age') is-invalid @enderror" name="age" id="age" value="{{$user->profile->age}}">
                                           {{-- <small id="helpId" class="form-text text-muted">Help text</small> --}}
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col">
-                                        <label for="address">Street/Village :</label>
-                                        <input type="text" name="address" id="address" class="form-control rounded" value="">
-                                        {{-- <small id="helpId" class="text-muted">Help text</small> --}}
+                                        <label for="phone">Phone :</label>
+                                        <input type="number" class="form-control rounded @error('phone') is-invalid @enderror" name="phone" id="phone" value="{{$user->profile->phone}}">
+                                        {{-- <small id="helpId" class="form-text text-muted">Help text</small> --}}
                                     </div>
                                     <div class="col">
-                                          <label for="">District :</label>
-                                          <input type="text" class="form-control rounded" name="" id="" value="">
-                                          {{-- <small id="helpId" class="form-text text-muted">Help text</small> --}}
+                                        <label for="address">Address :</label>
+                                        <input type="text" class="form-control rounded @error('address') is-invalid @enderror" name="address" id="address" value="{{$user->profile->address}}">
+                                        {{-- <small id="helpId" class="form-text text-muted">Help text</small> --}}
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col">
-                                        <label for="city">City :</label>
-                                        <input type="text" name="city" id="city" class="form-control rounded" value="">
+                                         <label for="province_id">Province :</label>
+                                         <select class="form-control @error('province_id') is-invalid @enderror" name="province_id" id="province_id">
+                                             @foreach ($province as $p)
+                                                <option value="{{$p->id}}">{{$p->name}}</option>
+                                             @endforeach
+                                         </select>
                                         {{-- <small id="helpId" class="text-muted">Help text</small> --}}
                                     </div>
                                     <div class="col">
-                                          <label for="">Province :</label>
-                                          <input type="text" class="form-control rounded" name="" id="" value="">
-                                          {{-- <small id="helpId" class="form-text text-muted">Help text</small> --}}
+                                        <div class="form-group">
+                                          <label for="regency_id">City :</label>
+                                          <select class="form-control @error('regency_id') is-invalid @enderror" name="regency_id" id="regency_id">
+                                            @foreach ($regency as $r)
+                                                <option value="{{$r->id}}">{{$r->name}}</option>
+                                            @endforeach
+                                          </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col">
+                                       <div class="form-group">
+                                         <label for="district_id">District :</label>
+                                         <select class="form-control @error('district_id') is-invalid @enderror" name="district_id" id="district_id">
+                                             @foreach ($district as $d)
+                                             <option value="{{$d->id}}">{{$d->name}}</option>
+                                             @endforeach
+                                         </select>
+                                       </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                          <label for="village_id">Village :</label>
+                                          <select class="form-control @error('village_id') is-invalid @enderror" name="village_id" id="village_id">
+                                              @foreach ($village as $v)
+                                              <option value="{{$v->id}}">{{$v->name}}</option>
+                                              @endforeach
+                                          </select>
+                                        </div>
                                     </div>
                                 </div>
                                 <button class="btn btn-primary" type="submit">Done</button>

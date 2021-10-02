@@ -34,26 +34,74 @@
                             <table class="table">
                                 <tr>
                                     <th>Full Name</th>
-                                    <td>: {{ucwords($user->fullname)}}</td>
-                                </tr>
-                                <tr>
-                                    <th>Age</th>
-                                    <td>: {{$user->age}} <small class="text-muted">years old</small></td>
-                                </tr>
-                                <tr>
-                                    <th>Address</th>
-                                    <td>: {{$user->address}}</td>
+                                    <td>: {{ucwords($user->profile->fullname)}}</td>
                                 </tr>
                                 <tr>
                                     <th>Email</th>
                                     <td>: {{$user->email}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Phone</th>
+                                    <td>: {{$user->profile->phone}}</td>
                                 </tr>
                             </table>
                         </div>
                     </div>
                 </div>
                 <div class="card-body border">
-
+                    <div class="p-4 bg-light">
+                        <h4 class="text-primary">Biodata</h4>
+                    </div>
+                    <table class="table">
+                        <tr>
+                            <th>Address</th>
+                            <td>: {{$user->profile->address}}</td>
+                        </tr>
+                        <tr>
+                            <th>Village</th>
+                            <td>: 
+                                @if ($user->profile->village)
+                                    {{ucwords($user->profile->village->name)}}
+                                @endif
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>District</th>
+                            <td>: 
+                                @if ($user->profile->district)
+                                {{ucwords($user->profile->district->name)}}
+                                @endif
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>City</th>
+                            <td>: 
+                                @if ($user->profile->regency)
+                                {{ucwords($user->profile->regency->name)}}
+                                @endif
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Province</th>
+                            <td>: 
+                                @if ($user->profile->province)
+                                {{ucwords($user->profile->province->name)}}
+                                @endif
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Age</th>
+                            <td>: 
+                                @if ($user->profile->age)
+                                    {{$user->profile->age}} <small class="text-muted">years old</small></td>
+                                @else
+                                    -
+                                @endif
+                        </tr>
+                        <tr>
+                            
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>

@@ -25,3 +25,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::resource('/post', PostController::class);
 Route::resource('/user', UserController::class);
+Route::get('/userlist', function () {
+    $user = App\Models\User::all();
+    return response($user);
+});

@@ -22,10 +22,11 @@ class ProfileFactory extends Factory
      */
     public function definition()
     {   
-        for ($i=1; $i <= 10; $i++) { 
-            return [
-              'user_id' => $i,  
-            ];
-        }
+        return [
+            'fullname' => $this->faker->name(),
+            'phone' => $this->faker->unique()->phoneNumber(),
+            'address' => $this->faker->streetAddress(),
+            'age' =>$this->faker->numberBetween($min=20, $max=35),
+        ];
     }
 }

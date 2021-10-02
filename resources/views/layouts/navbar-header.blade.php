@@ -10,7 +10,8 @@
                 </a>
             @endauth
             <a href="{{url('/home')}}">
-                <img class="img-fluid" src="{{asset('template/images/logo.png')}}" alt="Theme-Logo" />
+                {{-- <img class="img-fluid" src="{{asset('template/images/logo.png')}}" alt="Theme-Logo" /> --}}
+                <span><b>SILA</b> to <b>Rahim</b></span>
             </a>
             <a class="mobile-options">
                 <i class="ti-more"></i>
@@ -92,7 +93,7 @@
                 </li>
                 <li class="user-profile header-notification">
                     <a href="#!">
-                        <img src="{{asset('template/images/avatar-4.jpg')}}" class="img-radius" alt="User-Profile-Image">
+                        <img src="{{asset('template/images/avatar-4.jpg')}}" class="img-radius rounded-circle" alt="User-Profile-Image">
                         <span>{{Auth::user()->name}}</span>
                         <i class="ti-angle-down"></i>
                     </a>

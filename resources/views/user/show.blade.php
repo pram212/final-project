@@ -23,7 +23,9 @@
                     <div class="d-flex justify-content-between bg-light p-4 mb-3">
                         <h4 class="text-primary">About You</h4>
                         <div class="btn-group" role="group" aria-label="Basic example">
+                            @if (Auth::user()->id == $user->id)
                             <a href="{{url('/user/'.$user->id. '/edit')}}" class="btn btn-sm btn-info">Edit</a>
+                            @endif
                         </div>
                     </div>
                     <div class="row">

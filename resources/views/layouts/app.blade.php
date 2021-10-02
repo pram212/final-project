@@ -84,6 +84,20 @@
 <script src="{{asset('template/js/pcoded.min.js')}}"></script>
 <script src="{{asset('template/js/demo-12.js')}}"></script>
 <script src="{{asset('template/js/jquery.mCustomScrollbar.concat.min.js')}}"></script>
+<script>
+    $(document).ready(function () {
+        var userElement = $("#user-list");
+        $.ajax({
+            type: "get",
+            url: "/userlist",
+            success: function (response) {
+                $.each(response, function (i, value) { 
+                    $("#user-list").append('<li><a href="/user/'+value['id']+'"><i class="ti-user"></i> '+ value['name'] +'<span class="pcoded-mcaret"></span></a></li>');
+                });
+            }
+        });
+    });
+</script>
 
 </body>
 

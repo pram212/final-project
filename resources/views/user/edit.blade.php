@@ -61,7 +61,7 @@
                                 <div class="form-group row">
                                     <div class="col">
                                         <label for="phone">Phone :</label>
-                                        <input type="number" class="form-control rounded @error('phone') is-invalid @enderror" name="phone" id="phone" value="{{$user->profile->phone}}">
+                                        <input type="text" class="form-control rounded @error('phone') is-invalid @enderror" name="phone" id="phone" value="{{$user->profile->phone}}">
                                         {{-- <small id="helpId" class="form-text text-muted">Help text</small> --}}
                                     </div>
                                     <div class="col">

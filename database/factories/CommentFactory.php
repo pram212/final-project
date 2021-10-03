@@ -22,7 +22,9 @@ class CommentFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'isi' => $this->faker->text(),
+            'post_id' => $this->faker->numberBetween($min = 1, $max= 10),
+            'user_id' => $this->faker->numberBetween($min = 1, $max = 10),
         ];
     }
 }

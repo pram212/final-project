@@ -1,143 +1,98 @@
-<nav class="pcoded-navbar">
-    <div class="sidebar_toggle"><a href="#"><i class="icon-close icons"></i></a></div>
-    <div class="pcoded-inner-navbar main-menu">
-        <div class="pcoded-search">
-            <span class="searchbar-toggle">  </span>
-            <div class="pcoded-search-box ">
-                <input type="text" placeholder="Search">
-                <span class="search-icon"><i class="ti-search" aria-hidden="true"></i></span>
+<nav id="sidebar" class="sidebar">
+    <div class="sidebar-content js-simplebar">
+        <a class="sidebar-brand" href="{{url('/home')}}">
+            <span class="align-middle">Silaturahim</span>
+        </a>
+        <ul class="sidebar-nav">
+            <li class="sidebar-header">
+                Pages
+            </li>
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="index.html">
+                    <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="pages-profile.html">
+                    <i class="align-middle" data-feather="user"></i> <span class="align-middle">Profile</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="pages-settings.html">
+                    <i class="align-middle" data-feather="settings"></i> <span class="align-middle">Settings</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="pages-invoice.html">
+                    <i class="align-middle" data-feather="credit-card"></i> <span class="align-middle">Invoice</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="pages-blank.html">
+                    <i class="align-middle" data-feather="book"></i> <span class="align-middle">Blank</span>
+                </a>
+            </li>
+            <li class="sidebar-header">
+                Tools & Components
+            </li>
+            <li class="sidebar-item">
+                <a data-target="#ui" data-toggle="collapse" class="sidebar-link collapsed">
+                    <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">UI Elements</span>
+                </a>
+                <ul id="ui" class="sidebar-dropdown list-unstyled collapse " data-parent="#sidebar">
+                    <li class="sidebar-item"><a class="sidebar-link" href="ui-alerts.html">Alerts</a></li>
+                    <li class="sidebar-item"><a class="sidebar-link" href="ui-buttons.html">Buttons</a></li>
+                    <li class="sidebar-item"><a class="sidebar-link" href="ui-cards.html">Cards</a></li>
+                    <li class="sidebar-item"><a class="sidebar-link" href="ui-general.html">General</a></li>
+                    <li class="sidebar-item"><a class="sidebar-link" href="ui-grid.html">Grid</a></li>
+                    <li class="sidebar-item"><a class="sidebar-link" href="ui-modals.html">Modals</a></li>
+                    <li class="sidebar-item"><a class="sidebar-link" href="ui-typography.html">Typography</a></li>
+                </ul>
+            </li>
+
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="icons-feather.html">
+                    <i class="align-middle" data-feather="coffee"></i> <span class="align-middle">Icons</span>
+                </a>
+            </li>
+
+            <li class="sidebar-item">
+                <a data-target="#forms" data-toggle="collapse" class="sidebar-link collapsed">
+                    <i class="align-middle" data-feather="check-circle"></i> <span class="align-middle">Forms</span>
+                </a>
+                <ul id="forms" class="sidebar-dropdown list-unstyled collapse " data-parent="#sidebar">
+                    <li class="sidebar-item"><a class="sidebar-link" href="forms-layouts.html">Form Layouts</a></li>
+                    <li class="sidebar-item"><a class="sidebar-link" href="forms-basic-inputs.html">Basic Inputs</a></li>
+                </ul>
+            </li>
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="tables-bootstrap.html">
+                    <i class="align-middle" data-feather="list"></i> <span class="align-middle">Tables</span>
+                </a>
+            </li>
+            <li class="sidebar-header">
+                Plugins & Addons
+            </li>
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="charts-chartjs.html">
+                    <i class="align-middle" data-feather="bar-chart-2"></i> <span class="align-middle">Charts</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="maps-google.html">
+                    <i class="align-middle" data-feather="map"></i> <span class="align-middle">Maps</span>
+                </a>
+            </li>
+        </ul>
+
+        <div class="sidebar-cta">
+            <div class="sidebar-cta-content">
+                <strong class="d-inline-block mb-2">Upgrade to Pro</strong>
+                <div class="mb-3 text-sm">
+                    Are you looking for more components? Check out our premium version.
+                </div>
+                <a href="https://adminkit.io/pricing" target="_blank" class="btn btn-primary btn-block">Upgrade to Pro</a>
             </div>
         </div>
-        <div class="pcoded-navigatio-lavel" data-i18n="nav.category.navigation">General</div>
-        <ul class="pcoded-item pcoded-left-item">
-            <li class="">
-                <a href="{{url('/home')}}">
-                    <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
-                    <span class="pcoded-mtext" data-i18n="nav.dash.main">Home</span>
-                    <span class="pcoded-mcaret"></span>
-                </a>
-            </li>
-            <li class="pcoded-hasmenu">
-                <a href="javascript:void(0)">
-                    <span class="pcoded-micon"><i class="ti-user"></i></span>
-                    <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Pengguna</span>
-                    <span class="pcoded-mcaret"></span>
-                </a>
-                <ul class="pcoded-submenu" id="user-list">
-                    
-                </ul>
-            </li>
-        </ul>
-        <div class="pcoded-navigatio-lavel" data-i18n="nav.category.forms">Forms &amp; Tables</div>
-        <ul class="pcoded-item pcoded-left-item">
-            <li>
-                <a href="form-elements-component.html">
-                    <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
-                    <span class="pcoded-mtext" data-i18n="nav.form-components.main">Form Components</span>
-                    <span class="pcoded-mcaret"></span>
-                </a>
-            </li>
-            <li>
-                <a href="bs-basic-table.html">
-                    <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
-                    <span class="pcoded-mtext" data-i18n="nav.form-components.main">Basic Table</span>
-                    <span class="pcoded-mcaret"></span>
-                </a>
-            </li>
-            
-        </ul>
-
-        <div class="pcoded-navigatio-lavel" data-i18n="nav.category.forms">Chart &amp; Maps</div>
-        <ul class="pcoded-item pcoded-left-item">
-            <li>
-                <a href="chart.html">
-                    <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
-                    <span class="pcoded-mtext" data-i18n="nav.form-components.main">Chart</span>
-                    <span class="pcoded-mcaret"></span>
-                </a>
-            </li>
-            <li>
-                <a href="map-google.html">
-                    <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
-                    <span class="pcoded-mtext" data-i18n="nav.form-components.main">Maps</span>
-                    <span class="pcoded-mcaret"></span>
-                </a>
-            </li>
-            <li class="pcoded-hasmenu">
-                <a href="javascript:void(0)">
-                    <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
-                    <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Pages</span>
-                    <span class="pcoded-mcaret"></span>
-                </a>
-                <ul class="pcoded-submenu">
-                    <li class=" ">
-                        <a href="auth-normal-sign-in.html">
-                            <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                            <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Login</span>
-                            <span class="pcoded-mcaret"></span>
-                        </a>
-                    </li>
-                    <li class=" ">
-                        <a href="auth-sign-up.html">
-                            <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                            <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Register</span>
-                            <span class="pcoded-mcaret"></span>
-                        </a>
-                    </li>
-                    <li class=" ">
-                        <a href="sample-page.html">
-                            <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                            <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Sample Page</span>
-                            <span class="pcoded-mcaret"></span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            
-        </ul>
-
-        <div class="pcoded-navigatio-lavel" data-i18n="nav.category.other">Other</div>
-        <ul class="pcoded-item pcoded-left-item">
-            <li class="pcoded-hasmenu ">
-                <a href="javascript:void(0)">
-                    <span class="pcoded-micon"><i class="ti-direction-alt"></i><b>M</b></span>
-                    <span class="pcoded-mtext" data-i18n="nav.menu-levels.main">Menu Levels</span>
-                    <span class="pcoded-mcaret"></span>
-                </a>
-                <ul class="pcoded-submenu">
-                    <li class="">
-                        <a href="javascript:void(0)">
-                            <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                            <span class="pcoded-mtext" data-i18n="nav.menu-levels.menu-level-21">Menu Level 2.1</span>
-                            <span class="pcoded-mcaret"></span>
-                        </a>
-                    </li>
-                    <li class="pcoded-hasmenu ">
-                        <a href="javascript:void(0)">
-                            <span class="pcoded-micon"><i class="ti-direction-alt"></i></span>
-                            <span class="pcoded-mtext" data-i18n="nav.menu-levels.menu-level-22.main">Menu Level 2.2</span>
-                            <span class="pcoded-mcaret"></span>
-                        </a>
-                        <ul class="pcoded-submenu">
-                            <li class="">
-                                <a href="javascript:void(0)">
-                                    <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                    <span class="pcoded-mtext" data-i18n="nav.menu-levels.menu-level-22.menu-level-31">Menu Level 3.1</span>
-                                    <span class="pcoded-mcaret"></span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="">
-                        <a href="javascript:void(0)">
-                            <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                            <span class="pcoded-mtext" data-i18n="nav.menu-levels.menu-level-23">Menu Level 2.3</span>
-                            <span class="pcoded-mcaret"></span>
-                        </a>
-                    </li>
-
-                </ul>
-            </li>
-        </ul>
     </div>
 </nav>

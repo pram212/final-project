@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('content-title')
+    Home
+@endsection
+
 @section('content')
     @if (Session::get('sukses'))
         <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -13,55 +17,107 @@
           $(".alert").alert();
         </script>
     @endif
-    <div class="row justify-content-center">
-        <div class="col-sm-10">
-            @foreach ($posts as $post)
-            <div class="card">
-                <div class="card-header row">
-                    <div class="col-sm-1 text-center">
-                        <img src="{{asset('template/images/avatar-1.jpg')}}" class="img-fluid rounded-circle me-2 d-block" alt="" width="50">
-                    </div>
-                    <div class="col-sm-8">
-                        @ {{$post->user->name}} <br>
-                        <small class="text-info">{{date('d/m/y', strtotime($post->created_at))}}</small>
-                    </div>
-                    <div class="col-sm-3 text-right">
-                        @if (Auth::user()->id == $post->user->id)
-                            <a href="{{url('/post/' .$post->id .'/edit')}}" class="text-secondary"><i class="ti-pencil-alt"></i></a> | <a href="#" class="text-danger"><i class="ti-trash"></i></a>
+        <div class="row d-flex justify-content-center">
+            <div class="col-sm-10">
+                @foreach ($posts as $post)
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between border-bottom">
+                        <div class="card-title">
+                            <a href="{{url('/user/'. $post->user->id) }}" style="text-decoration: none" class="text-primary">
+                                <img src="{{asset('template/img/avatars/avatar-2.jpg')}}" class="rounded-circle me-2" width="50px">
+                                <b>@ {{$post->user->name}}</b>
+                            </a>
+                        </div>
+                        @if (Auth::user()->id  == $post->user_id)
+                        <div class="">
+                            <a href="{{url('/post/'.$post->id.'/edit')}}" class="btn btn-primary btn-sm">edit</a>
+                            <a href="" class="btn btn-danger btn-sm">delete</a>
+                        </div>
                         @endif
                     </div>
-                </div>
-                <div class="card-body border">
-                    <p class="card-text">{{$post->tulisan}}</p>
-                </div>
-                <div class="card-block accordion-block">
-                    <div id="accordion{{$post->id}}" role="tablist" aria-multiselectable="true">
-                        <div class="accordion-panel">
-                            <div class="accordion-heading d-flex justify-content-between" role="tab" id="headingOne">
-                                <div class="card-title accordion-title">
-                                    <a class="accordion-msg" data-toggle="collapse"
-                                    data-parent="#accordion{{$post->id}}" href="#collapse{{$post->id}}"
-                                    aria-expanded="true" aria-controls="collapseOne">
-                                    <span class="badge badge-primary">2 komentar</span>
-                                    </a>
-                                </div>
-                                <a href="#" type="button" class="m-3 badge badge-info" data-toggle="modal" data-target="#staticBackdrop">2 like</a>
-                            </div>
-                            <div id="collapse{{$post->id}}" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-                                <div class="accordion-content accordion-desc row">
-                                    <div class="col-sm-1 text-center">
-                                        <img src="{{asset('template/images/avatar-1.jpg')}}" class="img-fluid rounded-circle" alt="" width="25">
+                    <div class="card-body">
+                        <p>{{nl2br($post->tulisan)}}</p>
+                        <small class="text-muted">{{date('l, d M Y h:m', strtotime($post->created_at))}}</small>
+                    </div>
+                    @if ($post->comment->count() >= 0)
+
+                    <div class="card-footer border-top bg-light">
+                        <p>
+                            <a class="btn btn-primary btn-sm" data-bs-toggle="collapse" href="#collapse{{$post->id}}" role="button" aria-expanded="false" aria-controls="collapse{{$post->id}}">
+                                {{$post->comment->count()}} comments
+                            </a>
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                add comment
+                            </button>
+                            <!-- Modal -->
+                            
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <form action="" method="POST">
+                                            @csrf
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">New Comment</h5>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <textarea class="form-control" name="" id="" rows="3"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">cancel</button>
+                                            <button type="submit" class="btn btn-primary btn-sm">send</button>
+                                        </div>
+                                        </form>
                                     </div>
-                                    <div class="col-sm-10 bg-light p-1 rounded">
-                                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Neque officia voluptatibus ea natus eius expedita, dolores beatae amet atque dolorem reprehenderit molestias earum. Inventore velit deleniti quam illo numquam dolorum!
                                 </div>
                             </div>
+  
+                        </p>
+                        <div class="collapse" id="collapse{{$post->id}}">
+                            @foreach ($post->comment as $comment)
+                            <div class="card card-body p-2">
+                                <div class="row mb-1">
+                                    <div class="col">
+                                        <img src="{{asset('template/img/avatars/avatar-2.jpg')}}" class="rounded-circle me-2" width="30px">
+                                        <small>{{$comment->user->name}}</small>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col ps-2" style="margin-left: 4%">
+                                        {{$comment->isi}}
+                                    </div>
+                                </div>
+                            </div>
+                            @endforeach
                         </div>
                     </div>
+
+                    @endif
                 </div>
-            </div>
+            @endforeach
         </div>
-        @endforeach
     </div>
 </div>
 @endsection
+
+@push('script')
+    <script>
+        
+        // const accButton =  $(".accordion-header");
+        // // console.log(accButton)
+        // for (let i = 0; i < accButton.length; i++) {
+        //     accButton[i].click(function (e) { 
+        //         e.preventDefault()
+        //         alert([i]);
+        //     const accBody = $(".accordion-collapse");
+        //         for (let j = 0; j < accBody.length; j++) {
+        //             accBody[j].toggle();
+        //             console.log(accBody[j]);
+        //         } 
+        //     });
+            
+        // }
+    </script>
+@endpush

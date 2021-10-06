@@ -172,10 +172,10 @@
                         <img src="{{asset('template/img/avatars/avatar.jpg')}}" class="avatar img-fluid rounded mr-1" alt="Charles Hall" /> <span class="text-dark">{{Auth::user()->name}}</span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="{{url('/user/'. Auth::user()->id )}}"><i class="align-middle mr-1" data-feather="user"></i> Profile</a>
+                        <a class="dropdown-item" href="{{url('profile/'. Auth::user()->id )}}"><i class="align-middle mr-1" data-feather="user"></i> Profile</a>
                         <a class="dropdown-item" href="#"><i class="align-middle mr-1" data-feather="pie-chart"></i> Analytics</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{{url('/user/'.Auth::user()->id .'/edit')}}"><i class="align-middle mr-1" data-feather="settings"></i> Settings & Privacy</a>
+                        <a class="dropdown-item" href="{{url('profile/'.Auth::user()->id .'/edit')}}"><i class="align-middle mr-1" data-feather="settings"></i> Settings & Privacy</a>
                         <a class="dropdown-item" href="#"><i class="align-middle mr-1" data-feather="help-circle"></i> Help Center</a>
                         <div class="dropdown-divider"></div>
                         <a href="{{ route('logout') }}" class="dropdown-item"

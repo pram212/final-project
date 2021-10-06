@@ -116,5 +116,6 @@
         $("#alert").click(function (e) { 
             $("#alert").hide();
         });
+        
     </script>
 @endpush

@@ -23,7 +23,10 @@ class ProfileFactory extends Factory
     public function definition()
     {   
         return [
-            'fullname' => $this->faker->name(),
+            'firstname' => $this->faker->firstName(),
+            'lastname' => $this->faker->lastName(),
+            'bio' => $this->faker->text(),
+            'gender' => $this->faker->randomElement($array = array ('male','female')),
             'phone' => $this->faker->unique()->phoneNumber(),
             'address' => $this->faker->streetAddress(),
             'age' =>$this->faker->numberBetween($min=20, $max=35),

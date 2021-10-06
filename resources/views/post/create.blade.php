@@ -5,20 +5,31 @@
 <div class="row justify-content-center">
     <div class="col-sm-10">
         <div class="card">
-            <div class="card-body">
-                <form action="{{url('/post')}}"  method="POST" enctype="multipart/form-data">
-                    @csrf
-                    <div class="form-group">
-                      <label for="tulisan">Postingan Baru</label>
-                      <textarea class="form-control rounded @error('tulisan') is-invalid @enderror" name="tulisan" id="tulisan" rows="3" autofocus>
-                      </textarea>
-                      @error('tulisan')
-                          <small class="text-danger">{{$message}}</small>
-                      @enderror
-                    </div>
-                    <button class="btn btn-sm btn-primary btn-rounded">Kirim</button>
-                </form>
+
+            <div class="card-header mb-0 border-bottom">
+                <div class="card-title d-flex justify-content-between">
+                    <h1>New Post</h1>
+                    <a href="{{url('/home')}}">Go Back</a>
+                </div>
             </div>
+
+            <form action="{{url('post')}}"  method="POST" enctype="multipart/form-data">
+                @csrf
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="tulisan" class="form-label">Tulisan</label>
+                    <textarea class="form-control @error('tulisan') is-invalid @enderror" name="tulisan" id="tulisan" rows="3" autofocus>
+                    </textarea>
+                    @error('tulisan')
+                        <small class="text-danger">{{$message}}</small>
+                    @enderror
+                </div>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-sm btn-primary" type="submit">Send</button>
+            </div>  
+
+            </form>
         </div>
     </div>
 </div>

@@ -30,9 +30,6 @@
 
             <main class="content">
                 <div class="container-fluid p-0">
-                    <h1 class="h3 mb-3 p-2 bg-info text-white rounded">
-                        @yield('content-title')
-                    </h1>
 
                     @yield('content')
 

@@ -86,7 +86,9 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $post->tulisan =  $request->tulisan;
+        $post->save();
+        return redirect('/home')->with('sukses', 'Postingan Anda berhasil diubah');
     }
 
     /**
@@ -97,6 +99,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $post->delete();
+        return redirect('/home')->with('sukses', 'Postingan Anda berhasil dihapus');
     }
 }

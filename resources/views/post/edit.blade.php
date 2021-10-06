@@ -13,9 +13,8 @@
                 </div>
             </div>
 
-            <form action="{{url('/post')}}"  method="POST" enctype="multipart/form-data">
+            <form action="{{url('/post/'. $post->id)}}"  method="POST" enctype="multipart/form-data">
             @csrf @method('put')
-
             <div class="card-body">
                 <div class="form-group">
                     <label for="tulisan" class="form-label">Tulisan</label>

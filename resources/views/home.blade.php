@@ -1,24 +1,26 @@
 @extends('layouts.app')
 
-@section('content-title')
-    Home
-@endsection
-
 @section('content')
-    @if (Session::get('sukses'))
-        <div class="alert alert-warning alert-dismissible fade show" role="alert">
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-          <strong>{{Session::get('sukses')}}</strong> 
-        </div>
-        
-        <script>
-          $(".alert").alert();
-        </script>
-    @endif
-        <div class="row d-flex justify-content-center">
+    <div class="row d-flex justify-content-center">
             <div class="col-sm-10">
+                @if (Session::get('sukses'))
+                <div class="card bg-light" id="alert">
+                    <div class="card-body">
+                        <div class="alert alert-success alert-dismissible fade show p-3" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <strong>{{Session::get('sukses')}}</strong> 
+                        </div>
+                    </div>
+                </div>
+                @endif
+                <div class="card">
+                    <div class="card-body d-flex justify-content-between">
+                        <h1 class="card-title">Home</h1>
+                        <a href="{{url('post/create')}}" class="btn btn-primary"><i class="" data-feather="send"></i></a>
+                    </div>
+                </div>
                 @foreach ($posts as $post)
                 <div class="card">
                     <div class="card-header d-flex justify-content-between border-bottom">
@@ -30,8 +32,13 @@
                         </div>
                         @if (Auth::user()->id  == $post->user_id)
                         <div class="">
-                            <a href="{{url('/post/'.$post->id.'/edit')}}" class="btn btn-primary btn-sm">edit</a>
-                            <a href="" class="btn btn-danger btn-sm">delete</a>
+                            <a href="{{url('/post/'.$post->id.'/edit')}}" class="text-primary"><i class="align-middle" data-feather="edit"></i></a>
+                            <a href="{{url('post/'. $post->id)}}" class="text-danger" onclick="event.preventDefault();
+                                document.getElementById('hapus').submit();"><i class="align-middle" data-feather="delete"></i>
+                            </a>
+                            <form id="hapus" action="{{url('post/'.$post->id)}}" method="POST" class="d-none">
+                                @csrf @method("delete")
+                            </form>
                         </div>
                         @endif
                     </div>
@@ -51,6 +58,7 @@
                                 add comment
                             </button>
                             <!-- Modal -->
+                            <a href="" class="btn btn-sm btn-primary">{{$post->like->count()}} like</a>
                             
                             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered">
@@ -104,20 +112,9 @@
 
 @push('script')
     <script>
-        
-        // const accButton =  $(".accordion-header");
-        // // console.log(accButton)
-        // for (let i = 0; i < accButton.length; i++) {
-        //     accButton[i].click(function (e) { 
-        //         e.preventDefault()
-        //         alert([i]);
-        //     const accBody = $(".accordion-collapse");
-        //         for (let j = 0; j < accBody.length; j++) {
-        //             accBody[j].toggle();
-        //             console.log(accBody[j]);
-        //         } 
-        //     });
-            
-        // }
+        $(".alert").alert();
+        $("#alert").click(function (e) { 
+            $("#alert").hide();
+        });
     </script>
 @endpush

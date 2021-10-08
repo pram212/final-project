@@ -18,7 +18,7 @@
                 <div class="card">
                     <div class="card-body d-flex justify-content-between">
                         <h1 class="card-title">Home</h1>
-                        <a href="{{url('post/create')}}" class="btn btn-primary"><i class="" data-feather="send"></i></a>
+                        <a href="{{url('post/create')}}" class="btn btn-primary"><i class="" data-feather="plus"></i></a>
                     </div>
                 </div>
                 @foreach ($posts as $post)
@@ -26,7 +26,11 @@
                     <div class="card-header d-flex justify-content-between border-bottom">
                         <div class="card-title">
                             <a href="{{url('/user/'. $post->user->id) }}" style="text-decoration: none" class="text-primary">
+                                @if ($post->user->profile->photo)
+                                <img src="{{asset('foto/'. $post->user->profile->photo)}}" class="rounded-circle me-2" width="50px">
+                                @else
                                 <img src="{{asset('template/img/avatars/avatar-2.jpg')}}" class="rounded-circle me-2" width="50px">
+                                @endif
                                 <b>@ {{$post->user->name}}</b>
                             </a>
                         </div>

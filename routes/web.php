@@ -31,3 +31,5 @@ Route::get('/userlist', function () {
     $user = App\Models\User::all();
     return response($user);
 });
+
+Route::post('/profile/foto/{id}', [App\Http\Controllers\UploadProfileController::class, 'store']);

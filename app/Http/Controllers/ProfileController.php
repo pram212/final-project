@@ -90,6 +90,7 @@ class ProfileController extends Controller
             'age' => $request->age,
             'gender'=> $request->gender,
             'address' =>  $request->address,
+            'phone' => $request->phone,
             'province_id' => $request->province,
             'regency_id' => $request->regency,
             'district_id'  => $request->district,

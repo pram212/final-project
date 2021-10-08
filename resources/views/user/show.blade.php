@@ -25,7 +25,7 @@
                     <h5 class="card-title mb-0">Profile Details</h5>
                 </div>
                 <div class="card-body text-center">
-                    <img src="{{asset('template/img/avatars/avatar-4.jpg')}}" alt="Christina Mason" class="img-fluid rounded-circle mb-2" width="128" height="128" />
+                    <img src="{{asset('foto/'. $profile->photo)}}" alt="Christina Mason" class="img-fluid rounded-circle mb-2" width="128" height="128" />
                     <h5 class="card-title mb-0">{{$profile->firstname}}  {{$profile->lastname}}</h5>
                     <div class="text-muted mb-2">Lead Developer</div>
 
@@ -63,7 +63,9 @@
                         <li class="mb-1">
                             <span data-feather="home" class="feather-sm mr-1"></span>{{ucwords($profile->address)}}
                         </li>
+                        @if ($profile->regency)
                         <li class="mb-1"><span data-feather="map-pin" class="feather-sm mr-1"></span> From {{ucwords($profile->regency->name)}}</li>
+                        @endif
                     </ul>
                 </div>
                 <hr class="my-0" />

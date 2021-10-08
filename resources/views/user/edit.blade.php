@@ -81,22 +81,24 @@
                                         </form>
                                     </div>
                                     <div class="col-md-4">
-                                        <form action="{{url('profile/upload'. $profile->id)}}" method="POST" enctype="multipart/form-data">
+                                        <form action="{{url('profile/foto/'. $profile->id)}}" method="POST" enctype="multipart/form-data">
                                             @csrf
-                                            @method('put')
                                             <div class="text-center">
                                                 @if ($profile->photo)
-                                                <img alt="{{$profile->firstname}}" src="{{asset('template/img/avatars/'. $profile->photo)}}" class="rounded-circle img-responsive mt-2" width="128" height="128" id="img-profile"/>
+                                                <img alt="{{$profile->firstname}}" src="{{asset('foto/'. $profile->photo)}}" class="rounded-circle img-responsive mt-2  img-profile" width="128" height="128"/>
                                                 @else
-                                                <div id="profileImage" class="m-auto"></div>
+                                                <div id="profileImage" class="m-auto img-profile"></div>
                                                 @endif
-                                                <div class="mt-2">
+                                                <div class="mt-4">
+                                                    <input type="file" name="foto" id="img-input" style="display: none;">
                                                     <button class="btn btn-primary" id="btn-img-browse" type="submit">
                                                         <i class="fas fa-upload"></i> 
                                                         Upload
                                                     </button>
                                                 </div>
-                                                <small>For best results, use an image at least 128px by 128px in .jpg format</small>
+                                                @error('foto')
+                                                <small class="text-danger">{{$message}}</small>
+                                                @enderror
                                             </div>
                                         </form>
                                     </div>
@@ -131,8 +133,8 @@
                                               <label for="gender"  class="form-label">Gender</label>
                                               <select class="form-control" name="gender" id="gender">
                                                 <option value="">Choose Your Gender</option>
-                                                <option @if($profile->gender == 'male') selected @endif>Male</option>
-                                                <option @if($profile->gender == 'female') selected @endif>Female</option>
+                                                <option value="male" @if($profile->gender == 'male') selected @endif>Male</option>
+                                                <option value="female" @if($profile->gender == 'female') selected @endif>Female</option>
                                               </select>
                                         </div>
                                     </div>
@@ -142,6 +144,12 @@
                                           <input type="text" class="form-control" name="address" id="address" placeholder="Your Detail Address or Street"  value="{{$profile->address}}">
                                         </div>
                                         <div class="col-sm-6 mb-3">
+                                              <label for="phone" class="form-label">Phone</label>
+                                              <input type="tel" name="phone" id="phone" class="form-control" placeholder="Your Phone" aria-describedby="helpId" value="{{$profile->phone}}">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="mb-3 col-md-6">
                                             <label for="village" class="form-label">Village</label>
                                             <select class="form-control" name="village" id="village">
                                                 <option>Choose Your Village</option>
@@ -152,9 +160,7 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="mb-3 col-md-4">
+                                        <div class="mb-3 col-md-6">
                                             <div class="form-group">
                                               <label for="province"  class="form-label">Province</label>
                                               <select class="form-control" name="province" id="province">
@@ -167,27 +173,30 @@
                                               </select>
                                             </div>
                                         </div>
-                                        <div class="mb-3 col-md-4">
-                                            <label class="form-label" for="inputState">City</label>
-                                            <select id="inputState" class="form-control" name="regency">
-                                                <option selected>Choose Your City</option>
-                                                @foreach ($regencies as $regency)
-                                                <option value="{{$regency->id}}" @if($profile->regency_id == $regency->id) selected @endif>
-                                                    {{$regency->name}}
-                                                </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="mb-3 col-md-4">
-                                            <label for="district" class="form-label">District</label>
-                                            <select class="form-control" name="district" id="district">
-                                                <option>Choose Your District</option>
-                                                @foreach ($districts as $district)
-                                                <option value="{{$district->id}}" @if($profile->district_id == $district->id) selected @endif>
-                                                    {{$district->name}}
-                                                </option>
-                                                @endforeach
-                                            </select>
+                                        
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <label class="form-label" for="inputState">City</label>
+                                                <select id="inputState" class="form-control" name="regency">
+                                                    <option selected>Choose Your City</option>
+                                                    @foreach ($regencies as $regency)
+                                                    <option value="{{$regency->id}}" @if($profile->regency_id == $regency->id) selected @endif>
+                                                        {{$regency->name}}
+                                                    </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label for="district" class="form-label">District</label>
+                                                <select class="form-control" name="district" id="district">
+                                                    <option>Choose Your District</option>
+                                                    @foreach ($districts as $district)
+                                                    <option value="{{$district->id}}" @if($profile->district_id == $district->id) selected @endif>
+                                                        {{$district->name}}
+                                                    </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -256,10 +265,15 @@
             $("#alert").hide();
         });
 
-        const firstName = {!! json_encode($profile->firstname) !!};
+        const firstName = {!! json_encode($profile->user->name) !!};
         const lastName = {!! json_encode($profile->lastname) !!};
-        const intials = firstName.charAt(0);
+        const intials = firstName.charAt(0).toUpperCase();
         const profileImage = $('#profileImage').text(intials);
 
+        $(".img-profile").click(function (e) { 
+            e.preventDefault();
+            $("#img-input").click();
+            
+        });
     </script>
 @endpush

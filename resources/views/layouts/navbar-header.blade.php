@@ -3,7 +3,7 @@
     <a class="sidebar-toggle d-flex">
         <i class="hamburger align-self-center"></i>
     </a>
-    
+
     <form class="d-none d-sm-inline-block">
         <div class="input-group input-group-navbar">
             <input type="text" class="form-control" placeholder="Search…" aria-label="Search">
@@ -13,7 +13,7 @@
         </div>
     </form>
     @endauth
-    
+
     <div class="navbar-collapse collapse">
         <ul class="navbar-nav navbar-align">
             @auth
@@ -150,7 +150,7 @@
                 </div>
             </li>
             @endauth
-            
+
             @guest
                 @if (Route::has('login'))
                     <li class="nav-item">
@@ -173,10 +173,7 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
                         <a class="dropdown-item" href="{{url('profile/'. Auth::user()->id )}}"><i class="align-middle mr-1" data-feather="user"></i> Profile</a>
-                        <a class="dropdown-item" href="#"><i class="align-middle mr-1" data-feather="pie-chart"></i> Analytics</a>
-                        <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{url('profile/'.Auth::user()->id .'/edit')}}"><i class="align-middle mr-1" data-feather="settings"></i> Settings & Privacy</a>
-                        <a class="dropdown-item" href="#"><i class="align-middle mr-1" data-feather="help-circle"></i> Help Center</a>
                         <div class="dropdown-divider"></div>
                         <a href="{{ route('logout') }}" class="dropdown-item"
                         onclick="event.preventDefault();

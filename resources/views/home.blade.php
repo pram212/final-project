@@ -4,16 +4,12 @@
     <div class="row d-flex justify-content-center">
             <div class="col-sm-10">
                 @if (Session::get('sukses'))
-                <div class="card bg-light" id="alert">
-                    <div class="card-body">
-                        <div class="alert alert-success alert-dismissible fade show p-3" role="alert">
+                        <div class="alert alert-success alert-dismissible fade show p-3 w-25" role="alert" style="position: fixed; top: 50%; left:50%; z-index: 9999999">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                            <strong>{{Session::get('sukses')}}</strong> 
+                            <strong>{{Session::get('sukses')}}</strong>
                         </div>
-                    </div>
-                </div>
                 @endif
                 <div class="card">
                     <div class="card-body d-flex justify-content-between">
@@ -22,7 +18,8 @@
                     </div>
                 </div>
                 @foreach ($posts as $post)
-                <div class="card">
+
+                <div class="card" id="card_{{$post->id}}">
                     <div class="card-header d-flex justify-content-between border-bottom">
                         <div class="card-title">
                             <a href="{{url('/user/'. $post->user->id) }}" style="text-decoration: none" class="text-primary">
@@ -57,42 +54,24 @@
                             <a class="btn btn-primary btn-sm" data-bs-toggle="collapse" href="#collapse{{$post->id}}" role="button" aria-expanded="false" aria-controls="collapse{{$post->id}}">
                                 {{$post->comment->count()}} comments
                             </a>
-                            <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                add comment
-                            </button>
-                            <!-- Modal -->
-                            <a href="" class="btn btn-sm btn-primary">{{$post->like->count()}} like</a>
-                            
-                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered">
-                                    <div class="modal-content">
-                                        <form action="" method="POST">
-                                            @csrf
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">New Comment</h5>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="form-group">
-                                                <textarea class="form-control" name="" id="" rows="3"></textarea>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">cancel</button>
-                                            <button type="submit" class="btn btn-primary btn-sm">send</button>
-                                        </div>
-                                        </form>
-                                    </div>
+                            <a href="#" class="btn btn-sm btn-primary">{{$post->like->count()}} like</a>
+                            <a href="{{url('like/'. $post->id )}}" class="btn btn-sm btn-primary">like</a>
+
+                            <form action="{{url('comment/add/')}}" method="POST">
+                                @csrf
+                                <div class="input-group mb-3">
+                                    <input type="hidden" name="post_id" value="{{$post->id}}">
+                                    <input type="text" class="form-control" name="isi" placeholder="create comment ..." aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                    <button class="btn btn-sm btn-primary" type="submit">send</button>
                                 </div>
-                            </div>
-  
+                            </form>
                         </p>
                         <div class="collapse" id="collapse{{$post->id}}">
                             @foreach ($post->comment as $comment)
                             <div class="card card-body p-2">
                                 <div class="row mb-1">
                                     <div class="col">
-                                        <img src="{{asset('template/img/avatars/avatar-2.jpg')}}" class="rounded-circle me-2" width="30px">
+                                        <img src="{{asset('foto/' . $comment->user->profile->photo)}}" class="rounded-circle me-2" width="30px">
                                         <small>{{$comment->user->name}}</small>
                                     </div>
                                 </div>
@@ -117,9 +96,9 @@
 @push('script')
     <script>
         $(".alert").alert();
-        $("#alert").click(function (e) { 
+        $("#alert").click(function (e) {
             $("#alert").hide();
         });
-        
+
     </script>
 @endpush

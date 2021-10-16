@@ -24,7 +24,7 @@
         @auth
             @include('layouts.sidebar-menu')
         @endauth
-        
+
         <div class="main">
             @include('layouts.navbar-header')
 
@@ -37,7 +37,7 @@
             </main>
         </div>
 
-    </div> 
+    </div>
     {{-- wrapper end --}}
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -52,7 +52,7 @@
                 url: "/userlist",
                 success: function (response) {
                     // console.log(response)
-                    $.each(response, function (i, value) { 
+                    $.each(response, function (i, value) {
                         $("#user-list").append('<li><a href="/user/'+value['id']+'"><i class="ti-user"></i> '+ value['name'] +'<span class="pcoded-mcaret"></span></a></li>');
                     });
                 }

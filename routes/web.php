@@ -27,6 +27,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::resource('/post', PostController::class);
 Route::resource('/user', UserController::class);
 Route::resource('/profile', ProfileController::class);
+Route::post('/comment/add', [App\Http\Controllers\CommentController::class, 'store']);
+Route::get('/like/{post_id}', [App\Http\Controllers\LikeController::class, 'store']);
 Route::get('/userlist', function () {
     $user = App\Models\User::all();
     return response($user);

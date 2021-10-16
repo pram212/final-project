@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Like;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LikeController extends Controller
 {
@@ -35,7 +36,14 @@ class LikeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->post_id);
+
+        Like::create([
+            'post_id' => $request->post_id,
+            'user_id' => Auth::user()->id,
+        ]);
+
+        return redirect('home#card_'. $request->post_id)->with('sukses', 'Your has been like a post!');
     }
 
     /**

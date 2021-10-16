@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Comment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
@@ -24,7 +25,7 @@ class CommentController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -35,7 +36,19 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
+        if (!$request->isi) {
+            return redirect()->back();
+        } else {
+            Comment::create([
+                'post_id' => $request->post_id,
+                'isi' => $request->isi,
+                'user_id' => Auth::user()->id,
+            ]);
+        }
+
+        return redirect('home#card_' . $request->post_id)->with('sukses', 'your comment has been created!');
+
     }
 
     /**
